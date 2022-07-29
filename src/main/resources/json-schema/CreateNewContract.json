@@ -1,0 +1,96 @@
+{
+  "$id": "CreateNewContract",
+  "title": "CreateNewContract",
+  "description": "Внутреннее представление CreateNewContract",
+  "type": "object",
+  "required": [
+    "id",
+    "date_start",
+    "date_end",
+    "date_create",
+    "contract_number",
+    "contract_name",
+    "contractual_parties"
+  ],
+  "properties": {
+    "id": {
+      "$id": "#root/id",
+      "title": "Id",
+      "type": "string",
+      "format": "uuid"
+    },
+    "date_start": {
+      "$id": "#root/date_start",
+      "type": "string",
+      "format": "date"
+    },
+    "date_end": {
+      "$id": "#root/date_end",
+      "type": "string",
+      "format": "date"
+    },
+    "date_send": {
+      "$id": "#root/date_send",
+      "type": "string",
+      "format": "date-time",
+      "examples": [
+        "2022-03-05T12:12:12"
+      ]
+    },
+    "contract_number": {
+      "$id": "#root/contract_number",
+      "type": "string",
+      "default": "",
+      "examples": [
+        ""
+      ],
+      "pattern": "^.*$"
+    },
+    "contract_name": {
+      "$id": "#root/contract_name",
+      "type": "string",
+      "default": "",
+      "pattern": "^.*$"
+    },
+    "client_api": {
+      "$id": "#root/client_api",
+      "type": "string",
+      "enum": ["Soap", "Rest", "Unknown"]
+    },
+    "contractual_parties": {
+      "$id": "#root/contractual_parties",
+      "type": "array",
+      "default": [],
+      "items":{
+        "$id": "#root/contractual_parties/items",
+        "title": "Items",
+        "type": "object",
+        "required": [
+          "name",
+          "bank_account_number",
+          "bik"
+        ],
+        "properties": {
+          "name": {
+            "$id": "#root/contractual_parties/items/name",
+            "type": "string",
+            "default": "",
+            "pattern": "^.*$"
+          },
+          "bank_account_number": {
+            "$id": "#root/contractual_parties/items/bank_account_number",
+            "type": "string",
+            "default": "",
+            "pattern": "^.*$"
+          },
+          "bik": {
+            "$id": "#root/contractual_parties/items/bik",
+            "type": "string",
+            "default": "",
+            "pattern": "^.*$"
+          }
+        }
+      }
+    }
+  }
+}

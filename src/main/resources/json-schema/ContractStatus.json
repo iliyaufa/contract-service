@@ -1,0 +1,35 @@
+{
+  "$id": "ContractStatus",
+  "title": "ContractStatus",
+  "description": "Внутреннее представление ContractStatus",
+  "type": "object",
+  "required": [
+    "id",
+    "status"
+  ],
+  "properties": {
+    "id": {
+      "$id": "#root/id",
+      "title": "Id",
+      "type": "string",
+      "format": "uuid"
+    },
+    "status": {
+      "$id": "#root/status",
+      "title": "Status",
+      "type": "string",
+      "enum": ["Created", "Error"]
+    },
+    "date_create": {
+      "$id": "#root/date_create",
+      "title": "Date_create",
+      "type": "string",
+      "format": "date-time"
+    },
+    "error_code": {
+      "$id": "#root/error_code",
+      "title": "Error_code",
+      "type": "integer"
+    }
+  }
+}

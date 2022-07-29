@@ -1,0 +1,52 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:c="http://xmlns.esb.ru/ext/ContractService/"
+            targetNamespace="http://xmlns.esb.ru/ext/ContractService/"
+            elementFormDefault="qualified">
+
+    <xsd:element name="CreateNewContractRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="Id" type="c:UuidType"/>
+                <xsd:element name="DateStart" type="xsd:date" />
+                <xsd:element name="DateEnd" type="xsd:date" />
+                <xsd:element name="ContractNumber" type="xsd:string"/>
+                <xsd:element name="ContractName" type="xsd:string"/>
+                <xsd:element name="ContractualParties">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="ContractualParty" minOccurs="1" maxOccurs="unbounded">
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="Name" type="xsd:string"/>
+                                        <xsd:element name="BankAccount" type="xsd:string"/>
+                                        <xsd:element name="BankBik" type="xsd:string"/>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="CreateNewContractResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="Status">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:enumeration value="RequestIsQueued"/>
+                            <xsd:enumeration value="Error"/>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="ErrorMessage" type="xsd:string" minOccurs="0"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:simpleType name="UuidType">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="([0-9]|[a-f]|[A-F]){8}-([0-9]|[a-f]|[A-F]){4}-([0-9]|[a-f]|[A-F]){4}-([0-9]|[a-f]|[A-F]){4}-([0-9]|[a-f]|[A-F]){12}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>
