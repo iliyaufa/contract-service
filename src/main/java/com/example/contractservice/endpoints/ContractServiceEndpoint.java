@@ -44,10 +44,7 @@ public class ContractServiceEndpoint {
     public CreateNewContractResponse createContract(@RequestPayload CreateNewContractRequest request) {
         CreateNewContractResponse response = new CreateNewContractResponse();
         CreateNewContract newContract = newContractMapperImpl.toNewContract(request);
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.registerModule(new JavaTimeModule());
-        objectMapper.setDateFormat(dateFormat);
+        ObjectMapper objectMapper = mapperSetup();
         String message;
         try {
             message = objectMapper.writeValueAsString(newContract);
@@ -58,5 +55,13 @@ public class ContractServiceEndpoint {
         System.out.println(message);
         response.setStatus(ContractStatus.Status.CREATED.value());
         return response;
+    }
+
+    private ObjectMapper mapperSetup(){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+        objectMapper.setDateFormat(dateFormat);
+        return objectMapper;
     }
 }

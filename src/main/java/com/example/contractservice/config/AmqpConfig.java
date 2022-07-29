@@ -6,10 +6,8 @@ import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 
 @Configuration
 public class AmqpConfig {
@@ -37,16 +35,5 @@ public class AmqpConfig {
     public RabbitTemplate rabbitTemplate() {
         return new RabbitTemplate(connectionFactory());
     }
-
-    //@Bean
-    //public com.rabbitmq.client.ConnectionFactory rabbitConnectionFactory(){
-        //com.rabbitmq.client.ConnectionFactory connectionFactory = new com.rabbitmq.client.ConnectionFactory();
-        //connectionFactory.setHost("localhost");
-        //connectionFactory.setPort(5673);
-        //connectionFactory.setUsername("guest");
-        //connectionFactory.setPassword("guest");
-        //connectionFactory.setVirtualHost("/");
-        //return connectionFactory;
-    //}
 
 }
