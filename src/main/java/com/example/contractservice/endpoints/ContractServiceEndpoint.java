@@ -6,6 +6,7 @@ import com.example.contractservice.model.CreateNewContract;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 @Endpoint
+@Slf4j
 public class ContractServiceEndpoint {
     private static final String NAMESPACE_URI = "http://xmlns.esb.ru/ext/ContractService/";
 

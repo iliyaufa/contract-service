@@ -1,5 +1,6 @@
 package com.example.contractservice.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -14,6 +15,7 @@ import org.springframework.xml.xsd.XsdSchema;
 
 @Configuration
 @EnableWs
+@Slf4j
 public class WsConfig extends WsConfigurerAdapter {
 
     @Bean
