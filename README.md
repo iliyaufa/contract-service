@@ -1,12 +1,12 @@
-# Тестовое задание. Сервис 1/3
+## Тестовое задание. Сервис 1/3
 
-## Продуктовые требования
+### Продуктовые требования
 
-##### Реализация обработки потока данных по схеме:
+###### Реализация обработки потока данных по схеме:
 
 ![img.png](images/img.png)
 
-#### Требуется реализовать набор микро-сервисов: **ContractService**, **ContractProcessingService** и **ContractEventService**. 
+##### Требуется реализовать набор микро-сервисов: **ContractService**, **ContractProcessingService** и **ContractEventService**. 
 
 **ContractService** принимает запрос на создание договора по протоколу soap, преобразует полученный конверт 
 во внутреннее представление **CreateNewContract** и пересылает сообщение в очередь **contract.create** RabbitMQ,
@@ -24,9 +24,9 @@
 **ContractEventService** слушает очередь **contract.event** в RabbitMQ. Полученные из очереди сообщения транслирует 
 в тело **POST**-запроса и отправляет по адресу `http:/host:port/status`.
 
-## Маппинги
+### Маппинги
 
-#### Маппинг **CreateNewContractRequest** во внутреннее представление **CreateNewContract**
+##### Маппинг **CreateNewContractRequest** во внутреннее представление **CreateNewContract**
 
 | **CreateNewContract** | **CreateNewContractRequest** | **Описание**         | 
 |         :---:         |            :---:             | :---                 |
@@ -39,7 +39,7 @@
 | `client_api`          |                              | Перечислимое значение **Soap**|
 | `contractual_parties` | `ContractualParties`         | Маппинг массива. Описание маппинга элемента массива ниже.|
 
-#### Маппинг **ContractualParty** во внутреннее представление **ContractualParty**
+##### Маппинг **ContractualParty** во внутреннее представление **ContractualParty**
 
 | **CreateNewContract.ContractualParty** | **CreateNewContractRequest .ContractualParty** |
 |                :---:                   |                    :---:                       |
@@ -47,7 +47,7 @@
 | `bank_account_number`                  | `BankAccount`                                  |
 | `bik`                                  | `BankBik`                                      |
 
-#### Маппинг внутреннего представления **CreateNewContract** на таблицу БД **contract**
+##### Маппинг внутреннего представления **CreateNewContract** на таблицу БД **contract**
 
 | **contract**          | **CreateNewContract**        | **Описание колонок таблицы БД**  |
 |         :---:         |            :---:             | :---                             |
@@ -61,7 +61,7 @@
 | `client_api`          | `client_api`                 |                                  |
 | `contractual_parties` | `contractual_parties`        | Использовать тип **`jsonb`** для хранения **`json`** объекта. В данном случае будет сохраняться массив целиком.|
 
-#### Маппинг созданной записи **contract** на статус **ContractStatus**
+##### Маппинг созданной записи **contract** на статус **ContractStatus**
 
 | **ContractStatus**    | **contract**                 | **Описание**                  | 
 |         :---:         |            :---:             | :---                          |
@@ -70,7 +70,7 @@
 | `date_create`         | `date_create`                | Заполняется, если сохранение выполнено.|
 | `error_code`          |                              | Не заполняется если сохранение выполнено. Иначе заполняется значениями: **1**-если запись с таким 'id' уже существует; **2**-если запись с таким 'contract_number' уже существует.|
 
-## Технические требования
+### Технические требования
 
 - Используемый стек: **Java 8**, **Maven**, **Spring Boot**, **Apache Camel**, **Spring WS**, **Spring AMQP**, **Spring Data JDBC**, **MapStruct**,
   **RabbitMQ**, **PostgreSQL**, **Docker**;
