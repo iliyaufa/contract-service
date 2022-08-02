@@ -7,3 +7,7 @@ spring:
     password: guest
     port: 5673
     virtual-host: /
+  amqp:
+    core:
+      queue:
+        name: contract.create

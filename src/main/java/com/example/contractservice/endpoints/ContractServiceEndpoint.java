@@ -7,9 +7,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
@@ -25,19 +25,16 @@ import java.text.SimpleDateFormat;
 public class ContractServiceEndpoint {
     private static final String NAMESPACE_URI = "http://xmlns.esb.ru/ext/ContractService/";
 
+    private final RabbitTemplate rabbitTemplate;
 
     private final NewContractMapper newContractMapperImpl;
 
-
-    private final Queue contractQueue;
-
-
-    private final RabbitTemplate rabbitTemplate;
+    @Value("${spring.amqp.core.queue.name}")
+    private String qName;
 
     @Autowired
-    public ContractServiceEndpoint(NewContractMapper newContractMapperImpl, Queue contractQueue, RabbitTemplate rabbitTemplate){
+    public ContractServiceEndpoint(NewContractMapper newContractMapperImpl, RabbitTemplate rabbitTemplate){
         this.newContractMapperImpl = newContractMapperImpl;
-        this.contractQueue = contractQueue;
         this.rabbitTemplate = rabbitTemplate;
     }
 
@@ -53,7 +50,7 @@ public class ContractServiceEndpoint {
         } catch (JsonProcessingException e) {
             throw new RuntimeException();
         }
-        rabbitTemplate.convertAndSend(contractQueue.getName(),message);
+        rabbitTemplate.convertAndSend(qName,message);
         System.out.println(message);
         response.setStatus(ContractStatus.Status.CREATED.value());
         return response;
