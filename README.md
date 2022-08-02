@@ -4,7 +4,7 @@
 
 ###### Реализация обработки потока данных по схеме:
 
-![img.png](src/main/resources/images/img.png)
+![img.png](src/main/resources/static/images/img.png)
 
 ##### Требуется реализовать набор микро-сервисов: **ContractService**, **ContractProcessingService** и **ContractEventService**. 
 
