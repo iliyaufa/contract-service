@@ -131,8 +131,9 @@
                     <sources>
                         ${project.basedir}/src/main/resources/wsdl-schema/
                     </sources>
-                    <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
-                    <clearOutputDir>false</clearOutputDir>
+                    <packageName>com.example.contractservice.model</packageName>
+                      <!--<outputDirectory>${project.basedir}/src/main/java</outputDirectory>-->
+                    <!--<clearOutputDir>false</clearOutputDir>-->
                 </configuration>
             </plugin>
             <plugin>

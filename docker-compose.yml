@@ -1,0 +1,34 @@
+version: "3.7"
+
+services:
+  
+  rabbitmq:
+    image: rabbitmq:3.9-management
+    hostname: rabbitmq
+    ports:
+      - 5673:5672
+      - 15672:15672
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq/
+      - rabbitmq_log:/var/log/rabbitmq/
+    networks:
+      - rabbitmq_net
+
+  postgres:
+    image: postgres:14.4
+    restart: always
+    environment:
+      POSTGRES_DB: "contractdb"
+      POSTGRES_USER: "sa"
+      POSTGRES_PASSWORD: "pgpwd4"
+    ports:
+      - "5433:5432"
+
+volumes:
+    rabbitmq_data:
+    rabbitmq_log:
+
+networks:
+  rabbitmq_net:
+    driver: bridge
+      
