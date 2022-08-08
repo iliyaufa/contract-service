@@ -6,7 +6,7 @@ import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
-import ru.esb.xmlns.ext.contractservice.CreateNewContractRequest;
+import com.example.contractservice.model.CreateNewContractRequest;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.time.LocalDate;

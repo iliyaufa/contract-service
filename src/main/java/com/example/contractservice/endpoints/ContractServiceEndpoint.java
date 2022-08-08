@@ -14,8 +14,8 @@ import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
-import ru.esb.xmlns.ext.contractservice.CreateNewContractRequest;
-import ru.esb.xmlns.ext.contractservice.CreateNewContractResponse;
+import com.example.contractservice.model.CreateNewContractRequest;
+import com.example.contractservice.model.CreateNewContractResponse;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
